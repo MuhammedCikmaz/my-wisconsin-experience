@@ -1,0 +1,69 @@
+/* #map {
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    cursor: grab;
+}
+
+#map.rotating {
+    cursor: ew-resize;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.instructions {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-family: Arial, sans-serif;
+    pointer-events: none;
+    opacity: 0.8;
+} */
+
+/* public/css/styles.css */
+/* body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+} */
+
+.controls {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1;
+    background: white;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.landmark-button {
+    margin: 5px;
+    padding: 8px 16px;
+    cursor: pointer;
+    border: none;
+    background: #c5050c;
+    /* UW-Madison red */
+    color: white;
+    border-radius: 4px;
+}
+
+.landmark-button:hover {
+    background: #9b0000;
+}

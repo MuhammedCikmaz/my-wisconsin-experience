@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Madison 3D Map</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<style>
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+</style>
+
+<body>
+    <div class="controls">
+        <button class="landmark-button" data-location="Camp Randall" data-cor="43.0692072456805,-89.41280917301685">Camp
+            Randall</button>
+        <button class="landmark-button" data-location="Leopold Residence Hall"
+            data-cor="43.07744648538384,-89.41416099248961">Leopold
+            Residence Hall</button>
+        <button class="landmark-button" data-location="Union South"
+            data-cor="43.071865838902404,-89.40792516994038">Union South</button>
+        <button class="landmark-button" data-location="Kohl Center" data-cor="43.06945276951733,-89.39676813826085">Kohl
+            Center</button>
+        <button class="landmark-button" data-location="College Library"
+            data-cor="43.07674536342178,-89.40126565764903">College
+            Library</button>
+        <button class="landmark-button" data-location="Bakke"
+            data-cor="43.07702060510558,-89.42032200142934">Bakke</button>
+    </div>
+    <div id="map"></div>
+    <!-- <div class="instructions">Hold SHIFT + drag to rotate</div> -->
+    <script src="js/map.js"></script>
+
+    <!-- <gmp-map-3d center="43.076360, -89.400022" range="1000" tilt="30" heading="360" min-zoom="14" max-zoom="18"
+        restrict-bounds="true"></gmp-map-3d> -->
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCji8EYdh16lqXi-9WlJhrLlYBDcGKIam8&callback=initMap&v=alpha&libraries=maps3d"
+        defer></script>
+</body>
+
+<!-- <body>
+    <gmp-map-3d center="37.841157, -122.551679" range="2000" tilt="75" heading="330"></gmp-map-3d>
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCji8EYdh16lqXi-9WlJhrLlYBDcGKIam8&v=alpha&libraries=maps3d"></script> -->
+<!-- </body> -->
+
+</html>
+<!-- src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCji8EYdh16lqXi-9WlJhrLlYBDcGKIam8&callback=initMap&v=weekly" -->
