@@ -59,7 +59,7 @@ function moveCameraAround(map3DElement, lat, lng, options = {}) {
         range = 600,
         roll,
         tilt = 45,
-        durationMillis = 80000,
+        durationMillis = 90000,
         rounds = 5
     } = options;
 
@@ -86,6 +86,40 @@ function moveCameraAround(map3DElement, lat, lng, options = {}) {
     });
 }
 
+async function addPolygon(map3DElement, polygonData) {
+    const { Polygon3DElement, AltitudeMode } = await google.maps.importLibrary("maps3d");
+    // .outerCoordinates = [{ 'lat': 44.680164, 'lng': -87.95211, 'altitude': altitude }, { 'lat': 44.628673, 'lng': -88.179697, 'altitude': altitude }, { 'lat': 44.597525, 'lng': -88.422387, 'altitude': altitude }, { 'lat': 44.542657, 'lng': -88.703063, 'altitude': altitude }, { 'lat': 44.486267, 'lng': -88.904678, 'altitude': altitude }, { 'lat': 44.452796, 'lng': -89.038338, 'altitude': altitude }, { 'lat': 44.413715, 'lng': -89.252434, 'altitude': altitude }, { 'lat': 44.419394, 'lng': -89.377588, 'altitude': altitude }, { 'lat': 44.41087, 'lng': -89.479636, 'altitude': altitude }, { 'lat': 44.414969, 'lng': -89.560124, 'altitude': altitude }, { 'lat': 44.409832, 'lng': -89.642274, 'altitude': altitude }, { 'lat': 44.406276, 'lng': -89.709608, 'altitude': altitude }, { 'lat': 44.396116, 'lng': -89.826122, 'altitude': altitude }, { 'lat': 44.389271, 'lng': -89.913792, 'altitude': altitude }, { 'lat': 44.388443, 'lng': -90.04932, 'altitude': altitude }, { 'lat': 44.376076, 'lng': -90.27396, 'altitude': altitude }, { 'lat': 44.363081, 'lng': -90.415449, 'altitude': altitude }, { 'lat': 44.386228, 'lng': -90.654052, 'altitude': altitude }, { 'lat': 44.363133, 'lng': -90.823975, 'altitude': altitude }, { 'lat': 44.41024, 'lng': -91.153564, 'altitude': altitude }, { 'lat': 44.434394, 'lng': -91.416203, 'altitude': altitude }, { 'lat': 44.422408, 'lng': -91.771309, 'altitude': altitude }, { 'lat': 44.379429, 'lng': -91.961605, 'altitude': altitude }, { 'lat': 44.320977, 'lng': -91.95116, 'altitude': altitude }, { 'lat': 44.246934, 'lng': -91.884332, 'altitude': altitude }, { 'lat': 44.170167, 'lng': -91.798386, 'altitude': altitude }, { 'lat': 44.056012, 'lng': -91.647949, 'altitude': altitude }, { 'lat': 44.024422, 'lng': -91.571045, 'altitude': altitude }, { 'lat': 43.914231, 'lng': -91.313521, 'altitude': altitude }, { 'lat': 43.825112, 'lng': -91.263125, 'altitude': altitude }, { 'lat': 43.740517, 'lng': -91.240145, 'altitude': altitude }, { 'lat': 43.661929, 'lng': -91.246393, 'altitude': altitude }, { 'lat': 43.563376, 'lng': -91.259092, 'altitude': altitude }, { 'lat': 43.503531, 'lng': -91.246596, 'altitude': altitude }, { 'lat': 43.41259, 'lng': -91.231729, 'altitude': altitude }, { 'lat': 43.373112, 'lng': -91.19751, 'altitude': altitude }, { 'lat': 43.340793, 'lng': -91.120605, 'altitude': altitude }, { 'lat': 43.299069, 'lng': -91.082405, 'altitude': altitude }, { 'lat': 43.256252, 'lng': -91.079885, 'altitude': altitude }, { 'lat': 43.200474, 'lng': -91.130584, 'altitude': altitude }, { 'lat': 43.159828, 'lng': -91.160619, 'altitude': altitude }, { 'lat': 43.08063, 'lng': -91.166768, 'altitude': altitude }, { 'lat': 42.996612, 'lng': -91.153564, 'altitude': altitude }, { 'lat': 42.957735, 'lng': -91.154773, 'altitude': altitude }, { 'lat': 42.924115, 'lng': -91.155378, 'altitude': altitude }, { 'lat': 42.896667, 'lng': -91.129877, 'altitude': altitude }, { 'lat': 42.878213, 'lng': -91.09455, 'altitude': altitude }, { 'lat': 42.788782, 'lng': -91.088251, 'altitude': altitude }, { 'lat': 42.749824, 'lng': -91.07938, 'altitude': altitude }, { 'lat': 42.72036, 'lng': -91.047139, 'altitude': altitude }, { 'lat': 42.693252, 'lng': -90.963293, 'altitude': altitude }, { 'lat': 42.654421, 'lng': -90.729483, 'altitude': altitude }, { 'lat': 42.634849, 'lng': -90.689215, 'altitude': altitude }, { 'lat': 42.597549, 'lng': -90.68187, 'altitude': altitude }, { 'lat': 42.543595, 'lng': -90.639047, 'altitude': altitude }, { 'lat': 42.502163, 'lng': -90.648546, 'altitude': altitude }, { 'lat': 42.471574, 'lng': -90.638517, 'altitude': altitude }, { 'lat': 42.416906, 'lng': -90.527696, 'altitude': altitude }, { 'lat': 42.376451, 'lng': -90.465836, 'altitude': altitude }, { 'lat': 42.337144, 'lng': -90.426842, 'altitude': altitude }, { 'lat': 42.285884, 'lng': -90.423326, 'altitude': altitude }, { 'lat': 42.229122, 'lng': -90.391437, 'altitude': altitude }, { 'lat': 42.169085, 'lng': -90.284068, 'altitude': altitude }, { 'lat': 42.145304, 'lng': -90.197315, 'altitude': altitude }, { 'lat': 42.099631, 'lng': -90.178427, 'altitude': altitude }, { 'lat': 42.036804, 'lng': -90.1572, 'altitude': altitude }, { 'lat': 41.991155, 'lng': -90.14757, 'altitude': altitude }, { 'lat': 41.932355, 'lng': -90.16181, 'altitude': altitude }, { 'lat': 41.896511, 'lng': -90.162, 'altitude': altitude }, { 'lat': 41.863486, 'lng': -90.175534, 'altitude': altitude }, { 'lat': 41.826023, 'lng': -90.180736, 'altitude': altitude }, { 'lat': 41.811278, 'lng': -90.18848, 'altitude': altitude }, { 'lat': 41.79991, 'lng': -90.211484, 'altitude': altitude }, { 'lat': 41.771241, 'lng': -90.269285, 'altitude': altitude }, { 'lat': 41.762747, 'lng': -90.292778, 'altitude': altitude }, { 'lat': 41.743347, 'lng': -90.311822, 'altitude': altitude }, { 'lat': 41.703582, 'lng': -90.327032, 'altitude': altitude }, { 'lat': 41.676758, 'lng': -90.335898, 'altitude': altitude }, { 'lat': 41.633751, 'lng': -90.342247, 'altitude': altitude }, { 'lat': 41.590715, 'lng': -90.340931, 'altitude': altitude }, { 'lat': 41.582043, 'lng': -90.353598, 'altitude': altitude }, { 'lat': 41.572414, 'lng': -90.396924, 'altitude': altitude }, { 'lat': 41.561851, 'lng': -90.418251, 'altitude': altitude }, { 'lat': 41.545807, 'lng': -90.438454, 'altitude': altitude }, { 'lat': 41.524336, 'lng': -90.458656, 'altitude': altitude }, { 'lat': 41.518572, 'lng': -90.49337, 'altitude': altitude }, { 'lat': 41.519442, 'lng': -90.532789, 'altitude': altitude }, { 'lat': 41.521003, 'lng': -90.561208, 'altitude': altitude }, { 'lat': 41.516365, 'lng': -90.588591, 'altitude': altitude }, { 'lat': 41.501314, 'lng': -90.610994, 'altitude': altitude }, { 'lat': 41.48936, 'lng': -90.616965, 'altitude': altitude }, { 'lat': 41.477183, 'lng': -90.609611, 'altitude': altitude }, { 'lat': 41.45933, 'lng': -90.585256, 'altitude': altitude }, { 'lat': 41.455529, 'lng': -90.531447, 'altitude': altitude }, { 'lat': 41.454787, 'lng': -90.433463, 'altitude': altitude }, { 'lat': 41.455493, 'lng': -90.124777, 'altitude': altitude }, { 'lat': 41.513035, 'lng': -89.611752, 'altitude': altitude }, { 'lat': 41.617966, 'lng': -88.807244, 'altitude': altitude }, { 'lat': 41.73743, 'lng': -88.273231, 'altitude': altitude }, { 'lat': 41.837233, 'lng': -87.946335, 'altitude': altitude }, { 'lat': 41.945027, 'lng': -87.705029, 'altitude': altitude }, { 'lat': 41.984839, 'lng': -87.613318, 'altitude': altitude }, { 'lat': 42.035564, 'lng': -87.595228, 'altitude': altitude }, { 'lat': 42.098663, 'lng': -87.617944, 'altitude': altitude }, { 'lat': 42.168174, 'lng': -87.66735, 'altitude': altitude }, { 'lat': 42.379069, 'lng': -87.702468, 'altitude': altitude }, { 'lat': 42.574169, 'lng': -87.692969, 'altitude': altitude }, { 'lat': 42.737462, 'lng': -87.664894, 'altitude': altitude }, { 'lat': 42.973324, 'lng': -87.756422, 'altitude': altitude }, { 'lat': 43.171477, 'lng': -87.793297, 'altitude': altitude }, { 'lat': 43.363215, 'lng': -87.720866, 'altitude': altitude }, { 'lat': 43.505294, 'lng': -87.652189, 'altitude': altitude }, { 'lat': 43.723531, 'lng': -87.616304, 'altitude': altitude }, { 'lat': 43.902533, 'lng': -87.633575, 'altitude': altitude }, { 'lat': 44.184594, 'lng': -87.450358, 'altitude': altitude }, { 'lat': 44.299163, 'lng': -87.468516, 'altitude': altitude }, { 'lat': 44.426771, 'lng': -87.432007, 'altitude': altitude }, { 'lat': 44.525596, 'lng': -87.401087, 'altitude': altitude }, { 'lat': 44.618664, 'lng': -87.384001, 'altitude': altitude }, { 'lat': 44.676908, 'lng': -87.530038, 'altitude': altitude }, { 'lat': 44.702088, 'lng': -87.779719, 'altitude': altitude }, { 'lat': 44.680164, 'lng': -87.95211, 'altitude': altitude }];
+    const polygonOptions = {
+        strokeColor: "rgba(198, 14, 24, 1)", // UW Madison red
+        strokeWidth: 4,
+        fillColor: "rgba(198, 14, 24, 0.01)", // Transparent UW Madison red
+        altitudeMode: AltitudeMode.ABSOLUTE,
+        extruded: true,
+        drawsOccludedSegments: true,
+    }
+
+    const polygon = new google.maps.maps3d.Polygon3DElement(polygonOptions);
+
+    polygon.outerCoordinates = polygonData;
+
+    // polygon.name = "UW Madison Campus";
+
+    map3DElement.append(polygon);
+    // map3DElement.remove(polygon);
+    // console.log(map3DElement);
+
+    // polygon.remove();
+}
+
+function removePolygon(polygon) {
+    try {
+        polygon.remove();
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
 
 async function initMap() {
     const { Map3DElement } = await google.maps.importLibrary("maps3d");
@@ -100,10 +134,10 @@ async function initMap() {
     };
 
     const map3DElement = new Map3DElement({
-        // center: { lat: 43.0757626122969, lng: -89.41467213100795, altitude: 400 },
-        // range: 4500,
-        // tilt: 30,
-        ...camera,
+        center: { lat: 43.0757626122969, lng: -89.41467213100795, altitude: 400 },
+        range: 4500,
+        tilt: 30,
+        // ...camera,
         defaultLabelsDisabled: true,
 
     });
@@ -117,21 +151,21 @@ async function initMap() {
     document.body.append(map3DElement);
 
 
-    const polygonOptions = {
-        strokeColor: "rgba(198, 14, 24, 1)", // UW Madison red
-        strokeWidth: 4,
-        fillColor: "rgba(198, 14, 24, 0.01)", // Transparent UW Madison red
-        altitudeMode: AltitudeMode.ABSOLUTE,
-        extruded: true,
-        drawsOccludedSegments: true,
-    }
+    // const polygonOptions = {
+    //     strokeColor: "rgba(198, 14, 24, 1)", // UW Madison red
+    //     strokeWidth: 4,
+    //     fillColor: "rgba(198, 14, 24, 0.01)", // Transparent UW Madison red
+    //     altitudeMode: AltitudeMode.ABSOLUTE,
+    //     extruded: true,
+    //     drawsOccludedSegments: true,
+    // }
 
-    const campusPolygon = new google.maps.maps3d.Polygon3DElement(polygonOptions);
+    // const campusPolygon = new google.maps.maps3d.Polygon3DElement(polygonOptions);
 
     const altitude = 300;
 
     // Coordinates roughly outlining the main campus area
-    campusPolygon.outerCoordinates = [
+    const campusPolygonData = [
         {
             "lat": 43.076988,
             "lng": -89.3973042,
@@ -869,7 +903,9 @@ async function initMap() {
         }
     ];
 
-    map3DElement.append(campusPolygon);
+    addPolygon(map3DElement, campusPolygonData, 300);
+
+    // map3DElement.append(campusPolygon);
 
     function animate() {
         try {
@@ -885,11 +921,23 @@ async function initMap() {
     animate();
 
     setButtons(map3DElement);
+
+
 }
 
 function setButtons(map3DElement) {
     document.addEventListener("DOMContentLoaded", function (e) {
         document.querySelectorAll(".landmark-button").forEach((mark) => {
+            const speechData = [{ "location": "Camp Randall", "data": "Relentless Curiosity:\n\nThe W-Project, the first big event I attended\nMy first time being a badger" },
+            { "location": "Leopold Residence Hall", "data": "Where I live\n\nPurposeful Action\n\nWe have renewable energy. Very sustainable" },
+            { "location": "Union South", "data": "Relentless Curiosity:\n\nThe first university building I enterned, so this is where my Wisconsin journey began." },
+            { "location": "Kohl Center", "data": "Relentless Curiosity:\n\nAtended club fair and signed up for over 20 clubs (it was a mistake)\n\nTurkish Students Assosiation\nAlbanian student assosiation\nHoofers Outing Club\nHoofers Skiing Club\nWisconsin Space Program\nAlexander Hamilton Society" },
+            { "location": "College Library", "data": "Intellectual Confidence:\n\nThis is where I spend most of my day.\nI do research\n\n\nPurposeful Action:\n\nI am tutoring math to my sister." },
+            { "location": "Bakke", "data": "I try to go bakke 5 times per week." },]
+
+
+            const location = mark.dataset.location;
+
             var cor = mark.dataset.cor;
             cor = cor.split(",");
 
@@ -907,6 +955,12 @@ function setButtons(map3DElement) {
                     moveCameraAround(map3DElement, lat, lng);
                 }, 2000);
 
+                const result = speechData.find(item => item.location === location);
+                const data = result ? result.data : null;
+
+                editNotepad(data);
+                hideTextArea(false);
+
             })
         })
 
@@ -914,7 +968,53 @@ function setButtons(map3DElement) {
             map3DElement.stopCameraAnimation();
         });
 
+        document.querySelector(".landmark-button-2").addEventListener("click", function (e) {
+            const altitude = 300;
+            const hoChunkPolygonData = [{ 'lat': 44.680164, 'lng': -87.95211, 'altitude': altitude }, { 'lat': 44.628673, 'lng': -88.179697, 'altitude': altitude }, { 'lat': 44.597525, 'lng': -88.422387, 'altitude': altitude }, { 'lat': 44.542657, 'lng': -88.703063, 'altitude': altitude }, { 'lat': 44.486267, 'lng': -88.904678, 'altitude': altitude }, { 'lat': 44.452796, 'lng': -89.038338, 'altitude': altitude }, { 'lat': 44.413715, 'lng': -89.252434, 'altitude': altitude }, { 'lat': 44.419394, 'lng': -89.377588, 'altitude': altitude }, { 'lat': 44.41087, 'lng': -89.479636, 'altitude': altitude }, { 'lat': 44.414969, 'lng': -89.560124, 'altitude': altitude }, { 'lat': 44.409832, 'lng': -89.642274, 'altitude': altitude }, { 'lat': 44.406276, 'lng': -89.709608, 'altitude': altitude }, { 'lat': 44.396116, 'lng': -89.826122, 'altitude': altitude }, { 'lat': 44.389271, 'lng': -89.913792, 'altitude': altitude }, { 'lat': 44.388443, 'lng': -90.04932, 'altitude': altitude }, { 'lat': 44.376076, 'lng': -90.27396, 'altitude': altitude }, { 'lat': 44.363081, 'lng': -90.415449, 'altitude': altitude }, { 'lat': 44.386228, 'lng': -90.654052, 'altitude': altitude }, { 'lat': 44.363133, 'lng': -90.823975, 'altitude': altitude }, { 'lat': 44.41024, 'lng': -91.153564, 'altitude': altitude }, { 'lat': 44.434394, 'lng': -91.416203, 'altitude': altitude }, { 'lat': 44.422408, 'lng': -91.771309, 'altitude': altitude }, { 'lat': 44.379429, 'lng': -91.961605, 'altitude': altitude }, { 'lat': 44.320977, 'lng': -91.95116, 'altitude': altitude }, { 'lat': 44.246934, 'lng': -91.884332, 'altitude': altitude }, { 'lat': 44.170167, 'lng': -91.798386, 'altitude': altitude }, { 'lat': 44.056012, 'lng': -91.647949, 'altitude': altitude }, { 'lat': 44.024422, 'lng': -91.571045, 'altitude': altitude }, { 'lat': 43.914231, 'lng': -91.313521, 'altitude': altitude }, { 'lat': 43.825112, 'lng': -91.263125, 'altitude': altitude }, { 'lat': 43.740517, 'lng': -91.240145, 'altitude': altitude }, { 'lat': 43.661929, 'lng': -91.246393, 'altitude': altitude }, { 'lat': 43.563376, 'lng': -91.259092, 'altitude': altitude }, { 'lat': 43.503531, 'lng': -91.246596, 'altitude': altitude }, { 'lat': 43.41259, 'lng': -91.231729, 'altitude': altitude }, { 'lat': 43.373112, 'lng': -91.19751, 'altitude': altitude }, { 'lat': 43.340793, 'lng': -91.120605, 'altitude': altitude }, { 'lat': 43.299069, 'lng': -91.082405, 'altitude': altitude }, { 'lat': 43.256252, 'lng': -91.079885, 'altitude': altitude }, { 'lat': 43.200474, 'lng': -91.130584, 'altitude': altitude }, { 'lat': 43.159828, 'lng': -91.160619, 'altitude': altitude }, { 'lat': 43.08063, 'lng': -91.166768, 'altitude': altitude }, { 'lat': 42.996612, 'lng': -91.153564, 'altitude': altitude }, { 'lat': 42.957735, 'lng': -91.154773, 'altitude': altitude }, { 'lat': 42.924115, 'lng': -91.155378, 'altitude': altitude }, { 'lat': 42.896667, 'lng': -91.129877, 'altitude': altitude }, { 'lat': 42.878213, 'lng': -91.09455, 'altitude': altitude }, { 'lat': 42.788782, 'lng': -91.088251, 'altitude': altitude }, { 'lat': 42.749824, 'lng': -91.07938, 'altitude': altitude }, { 'lat': 42.72036, 'lng': -91.047139, 'altitude': altitude }, { 'lat': 42.693252, 'lng': -90.963293, 'altitude': altitude }, { 'lat': 42.654421, 'lng': -90.729483, 'altitude': altitude }, { 'lat': 42.634849, 'lng': -90.689215, 'altitude': altitude }, { 'lat': 42.597549, 'lng': -90.68187, 'altitude': altitude }, { 'lat': 42.543595, 'lng': -90.639047, 'altitude': altitude }, { 'lat': 42.502163, 'lng': -90.648546, 'altitude': altitude }, { 'lat': 42.471574, 'lng': -90.638517, 'altitude': altitude }, { 'lat': 42.416906, 'lng': -90.527696, 'altitude': altitude }, { 'lat': 42.376451, 'lng': -90.465836, 'altitude': altitude }, { 'lat': 42.337144, 'lng': -90.426842, 'altitude': altitude }, { 'lat': 42.285884, 'lng': -90.423326, 'altitude': altitude }, { 'lat': 42.229122, 'lng': -90.391437, 'altitude': altitude }, { 'lat': 42.169085, 'lng': -90.284068, 'altitude': altitude }, { 'lat': 42.145304, 'lng': -90.197315, 'altitude': altitude }, { 'lat': 42.099631, 'lng': -90.178427, 'altitude': altitude }, { 'lat': 42.036804, 'lng': -90.1572, 'altitude': altitude }, { 'lat': 41.991155, 'lng': -90.14757, 'altitude': altitude }, { 'lat': 41.932355, 'lng': -90.16181, 'altitude': altitude }, { 'lat': 41.896511, 'lng': -90.162, 'altitude': altitude }, { 'lat': 41.863486, 'lng': -90.175534, 'altitude': altitude }, { 'lat': 41.826023, 'lng': -90.180736, 'altitude': altitude }, { 'lat': 41.811278, 'lng': -90.18848, 'altitude': altitude }, { 'lat': 41.79991, 'lng': -90.211484, 'altitude': altitude }, { 'lat': 41.771241, 'lng': -90.269285, 'altitude': altitude }, { 'lat': 41.762747, 'lng': -90.292778, 'altitude': altitude }, { 'lat': 41.743347, 'lng': -90.311822, 'altitude': altitude }, { 'lat': 41.703582, 'lng': -90.327032, 'altitude': altitude }, { 'lat': 41.676758, 'lng': -90.335898, 'altitude': altitude }, { 'lat': 41.633751, 'lng': -90.342247, 'altitude': altitude }, { 'lat': 41.590715, 'lng': -90.340931, 'altitude': altitude }, { 'lat': 41.582043, 'lng': -90.353598, 'altitude': altitude }, { 'lat': 41.572414, 'lng': -90.396924, 'altitude': altitude }, { 'lat': 41.561851, 'lng': -90.418251, 'altitude': altitude }, { 'lat': 41.545807, 'lng': -90.438454, 'altitude': altitude }, { 'lat': 41.524336, 'lng': -90.458656, 'altitude': altitude }, { 'lat': 41.518572, 'lng': -90.49337, 'altitude': altitude }, { 'lat': 41.519442, 'lng': -90.532789, 'altitude': altitude }, { 'lat': 41.521003, 'lng': -90.561208, 'altitude': altitude }, { 'lat': 41.516365, 'lng': -90.588591, 'altitude': altitude }, { 'lat': 41.501314, 'lng': -90.610994, 'altitude': altitude }, { 'lat': 41.48936, 'lng': -90.616965, 'altitude': altitude }, { 'lat': 41.477183, 'lng': -90.609611, 'altitude': altitude }, { 'lat': 41.45933, 'lng': -90.585256, 'altitude': altitude }, { 'lat': 41.455529, 'lng': -90.531447, 'altitude': altitude }, { 'lat': 41.454787, 'lng': -90.433463, 'altitude': altitude }, { 'lat': 41.455493, 'lng': -90.124777, 'altitude': altitude }, { 'lat': 41.513035, 'lng': -89.611752, 'altitude': altitude }, { 'lat': 41.617966, 'lng': -88.807244, 'altitude': altitude }, { 'lat': 41.73743, 'lng': -88.273231, 'altitude': altitude }, { 'lat': 41.837233, 'lng': -87.946335, 'altitude': altitude }, { 'lat': 41.945027, 'lng': -87.705029, 'altitude': altitude }, { 'lat': 41.984839, 'lng': -87.613318, 'altitude': altitude }, { 'lat': 42.035564, 'lng': -87.595228, 'altitude': altitude }, { 'lat': 42.098663, 'lng': -87.617944, 'altitude': altitude }, { 'lat': 42.168174, 'lng': -87.66735, 'altitude': altitude }, { 'lat': 42.379069, 'lng': -87.702468, 'altitude': altitude }, { 'lat': 42.574169, 'lng': -87.692969, 'altitude': altitude }, { 'lat': 42.737462, 'lng': -87.664894, 'altitude': altitude }, { 'lat': 42.973324, 'lng': -87.756422, 'altitude': altitude }, { 'lat': 43.171477, 'lng': -87.793297, 'altitude': altitude }, { 'lat': 43.363215, 'lng': -87.720866, 'altitude': altitude }, { 'lat': 43.505294, 'lng': -87.652189, 'altitude': altitude }, { 'lat': 43.723531, 'lng': -87.616304, 'altitude': altitude }, { 'lat': 43.902533, 'lng': -87.633575, 'altitude': altitude }, { 'lat': 44.184594, 'lng': -87.450358, 'altitude': altitude }, { 'lat': 44.299163, 'lng': -87.468516, 'altitude': altitude }, { 'lat': 44.426771, 'lng': -87.432007, 'altitude': altitude }, { 'lat': 44.525596, 'lng': -87.401087, 'altitude': altitude }, { 'lat': 44.618664, 'lng': -87.384001, 'altitude': altitude }, { 'lat': 44.676908, 'lng': -87.530038, 'altitude': altitude }, { 'lat': 44.702088, 'lng': -87.779719, 'altitude': altitude }, { 'lat': 44.680164, 'lng': -87.95211, 'altitude': altitude }];
+
+            addPolygon(map3DElement, hoChunkPolygonData, 300);
+
+            moveCamera(map3DElement, 42.9949118690911, -89.29022753012352, { altitude: 900000, range: 10, tilt: 0 });
+
+            // const result = speechData.find(item => item.location === location);
+            const data = "Ho-Chunk Nation Land\n\nEmpathy and Humility:\n\nI learned about the Ho-Chunk Nation and their history\nI learned about the importance of land acknowledgements\n\nDoing a study abroad in the future in Singapore is in my plans";
+
+            editNotepad(data);
+            hideTextArea(false);
+
+        });
+
+        document.getElementById('notepad').addEventListener('input', function () {
+            this.style.height = 'auto';
+            this.style.height = this.scrollHeight + 'px';
+        });
+
+        function hideTextArea(trueOrFalse) {
+            if (trueOrFalse) {
+                document.querySelector(".text-area-container").style.display = "none";
+            }
+            else {
+                document.querySelector(".text-area-container").style.display = "flex";
+            }
+        }
+
+        // hideTextArea(true);
+
+        function editNotepad(text) {
+            // const notepadContainer = document.querySelector(".text-area-container");
+            const notepad = document.getElementById('notepad');
+
+            // notepadContainer.style.height = height;
+            // notepadContainer.style.width = width;
+
+            notepad.value = text;
+
+        }
+
+
     })
+
+
 }
 
 

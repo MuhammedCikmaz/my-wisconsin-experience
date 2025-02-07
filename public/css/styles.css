@@ -64,6 +64,49 @@ body {
     border-radius: 4px;
 }
 
+.landmark-button-2 {
+    margin: 5px;
+    padding: 8px 16px;
+    cursor: pointer;
+    border: none;
+    background: #c5050c;
+    /* UW-Madison red */
+    color: white;
+    border-radius: 4px;
+}
+
 .landmark-button:hover {
     background: #9b0000;
+}
+
+.text-area-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+    background: white;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    width: 30%;
+    height: 30%;
+    display: none;
+}
+
+.text-area {
+    width: 100%;
+    padding: 8px;
+    margin: 0;
+    border: 1px solid #c5050c;
+    border-radius: 4px;
+    resize: none;
+    overflow: hidden;
+    background-color: white;
+    pointer-events: none;
+    min-height: 20px;
+    box-sizing: border-box;
+}
+
+.hidden {
+    display: none;
 }
